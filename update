@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if [ -d /etc/pacman.d ]
+then
+    # The host is based on Arch
+    echo "Running the pacman version of the command..."
+    sudo pacman -Syu
+fi
+
+if [ -d /etc/apt ]
+then
+    # The host is based on Debian or Ubuntu
+    echo "Running the apt version fo the command..."
+    sudo apt update
+    sudo apt upgrade
+fi
+
+if [ -d /etc/dnf ]
+then
+    # The host is based on Fedora
+    echo "Running the dnf version fo the command..."
+    sudo dnf update
+fi
