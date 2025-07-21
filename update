@@ -1,4 +1,5 @@
 #!/bin/bash
+# To be placed in /usr/local/bin
 
 if [ -d /etc/pacman.d ]
 then
