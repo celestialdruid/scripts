@@ -1,14 +1,15 @@
 #!/bin/bash
-# To be placed in /usr/local/bin
 
-if [ -d /etc/pacman.d ]
+release_file=/etc/os-release
+
+if grep -i "arch" $release_file
 then
     # The host is based on Arch
     echo "Running the pacman version of the command..."
     sudo pacman -Syu
 fi
 
-if [ -d /etc/apt ]
+if grep -i "apt" $release_file
 then
     # The host is based on Debian or Ubuntu
     echo "Running the apt version of the command..."
@@ -16,7 +17,7 @@ then
     sudo apt upgrade
 fi
 
-if [ -d /etc/dnf ]
+if grep -i "fedora" $release_file
 then
     # The host is based on Fedora
     echo "Running the dnf version of the command..."
