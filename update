@@ -1,4 +1,5 @@
 #!/bin/bash
+# To be placed in /usr/local/bin
 
 release_file=/etc/os-release
 
@@ -9,7 +10,7 @@ then
     sudo pacman -Syu
 fi
 
-if grep -i "apt" $release_file
+if grep -i "ubuntu" $release_file || grep -i "debian" $release_file
 then
     # The host is based on Debian or Ubuntu
     echo "Running the apt version of the command..."
