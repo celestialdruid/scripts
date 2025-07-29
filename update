@@ -1,25 +1,40 @@
 #!/bin/bash
 
+# Run with `sudo update`
+
 release_file=/etc/os-release
+errorlog=/var/log/updater_errors.log
+
+check_exit_status() {
+    if [ $? -ne 0 ]
+    then
+        echo "An error occurred. Please check the $errorlog file."
+    fi
+}
 
 if grep -i "arch" $release_file
 then
     # The host is based on Arch
     echo "Running the pacman version of the command..."
-    sudo pacman -Syu
+    sudo pacman -Syu 2>>$errorlog
+    check_exit_status
 fi
 
 if grep -i "apt" $release_file
 then
     # The host is based on Debian or Ubuntu
     echo "Running the apt version of the command..."
-    sudo apt update
-    sudo apt upgrade
+    sudo apt update 2>>$errorlog
+    check_exit_status
+
+    sudo apt upgrade -y 2>>$errorlog
+    check_exit_status
 fi
 
 if grep -i "fedora" $release_file
 then
     # The host is based on Fedora
     echo "Running the dnf version of the command..."
-    sudo dnf update
+    sudo dnf update -y 2>>$errorlog
+    check_exit_status
 fi
