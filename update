@@ -1,4 +1,5 @@
 #!/bin/bash
+# To be placed in /usr/local/bin
 
 # Run with `sudo update`
 
@@ -20,7 +21,7 @@ then
     check_exit_status
 fi
 
-if grep -i "apt" $release_file
+if grep -i "ubuntu" $release_file || grep -i "debian" $release_file
 then
     # The host is based on Debian or Ubuntu
     echo "Running the apt version of the command..."
