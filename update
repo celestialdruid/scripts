@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# To allow creation of error log file in /var/log
-# run with `sudo update`
+# Run with sudo to allow creation of error log file in /var/log
 
 release_file=/etc/os-release
 errorlog=/var/log/updater_errors.log
